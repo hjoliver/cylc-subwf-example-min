@@ -1,0 +1,20 @@
+#!Jinja2
+{% set N = N_TASKS | default(3) | int %}
+[scheduler]
+   [[events]]
+      stall timeout = PT0S
+      abort on stall timeout = True
+
+[scheduling]
+   [[graph]]
+      R1 = "pre => PROC:succeed-all => post"
+[runtime]
+   [[root]]
+   [[pre]]
+   [[PROC]]
+{% for i in range(N) %}
+   [[proc{{i}}]]
+      inherit = PROC
+      script = echo "I am proc task {{i}} of {{N}}"
+{% endfor %}
+   [[post]]

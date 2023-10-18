@@ -1,0 +1,15 @@
+[scheduling]
+    cycling mode = integer
+    final cycle point = 3
+    [[graph]]
+        P1 = "foo => run-sub => bar"
+[runtime]
+    [[foo, bar]]
+    [[run-sub]]
+        script = """
+            # Run a subworkflow instance with a unique name, and dynamic input.
+            NAME=$(subwf-name.sh sub $CYLC_WORKFLOW_ID $CYLC_TASK_CYCLE_POINT)
+            # Install it from the main workflow run directory.
+            cylc install -n $NAME ${CYLC_WORKFLOW_RUN_DIR}/sub 
+            cylc play --no-detach --set="N_TASKS=$((1 + RANDOM % 3))" $NAME
+        """
