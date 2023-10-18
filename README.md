@@ -7,6 +7,7 @@ can run anything, including another workflow.
 
 The subworkflow source directory can be stored with the main workflow source.
 
+```
 main/
 ├── flow.cylc
 ├── bin/
@@ -17,6 +18,7 @@ main/
     ├── bin/
     ├── apps/
     └── ...
+```
 
 At run time, the subworkflow definition instaled to the main run directory
 should be used to create subworkflow instances, not the original source (just
