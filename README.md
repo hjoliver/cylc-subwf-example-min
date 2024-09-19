@@ -4,6 +4,9 @@ A subworkflow is a workflow executed by a task in another (main) workflow.
 Cylc does not have built-in support for this, but tasks can run anything,
 including other workflows.
 
+This is a specific minimal example.
+[See here for more detail.](https://github.com/hjoliver/cylc-subwf-example)
+
 Subworkflow source directories can be stored with the main workflow:
 
 ```
